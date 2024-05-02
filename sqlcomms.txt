@@ -1,0 +1,5 @@
+Show Events:
+  userSearch = searchedName;
+  SELECT * 
+  FROM event, review 
+  WHERE event.name LIKE '%userSearch';
