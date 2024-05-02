@@ -181,96 +181,96 @@ insert into city(city_name, country, latitude, longitude) values ("Frederick", "
 
 -- VENUE RELATION
 -- VENUE 1
-insert into venue(venue_name, capacity, street, city_id) values ("The 9:30 Club", 1200, "815 V St NW", 1);
+insert into venue(venue_name, capacity, street, city_name) values ("The 9:30 Club", 1200, "815 V St NW", "Washington, D.C.");
 
 -- VENUE 2
-insert into venue(venue_name, capacity, street, city_id) values ("The Canal Club", 500, "1545 E Cary St", 2);
+insert into venue(venue_name, capacity, street, city_name) values ("The Canal Club", 500, "1545 E Cary St", "Richmond");
 
 -- VENUE 3
-insert into venue(venue_name, capacity, street, city_id) values ("The Ocean", 100000, "Pacific Ocean", 6);
+insert into venue(venue_name, capacity, street, city_name) values ("The Ocean", 100000, "Pacific Ocean", "Reefville");
 
 -- VENUE 4
-insert into venue(venue_name, capacity, street, city_id) values ("The White House", 50000, "1600 Pennsylvania Avenue NW", 1);
+insert into venue(venue_name, capacity, street, city_name) values ("The White House", 50000, "1600 Pennsylvania Avenue NW", "Washington, D.C.");
 
 -- VENUE 5
-insert into venue(venue_name, capacity, street, city_id) values ("Hood College", 2000, "401 Rosemont Ave", 7);
+insert into venue(venue_name, capacity, street, city_name) values ("Hood College", 2000, "401 Rosemont Ave", "Frederick");
 
 -- VENUE 6
-insert into venue(venue_name, capacity, street, city_id) values ("The Bathroom", 11, "10 Outhouse Avenue", 2);
+insert into venue(venue_name, capacity, street, city_name) values ("The Bathroom", 11, "10 Outhouse Avenue", "Richmond");
 
 -- EVENT RELATION
 -- EVENT 1
-insert into event(event_name, date_time, event_desc, venue_id) values ("The Day of Reckoning", "2024-12-22 19:00:00", "Beethoven reanimates at the 9:30 Club", 1);
+insert into event(event_name, date_time, event_desc, venue_name) values ("The Day of Reckoning", "2024-12-22 19:00:00", "Beethoven reanimates at the 9:30 Club", "The 9:30 Club");
 
 -- EVENT 2
-insert into event(event_name, date_time, event_desc, venue_id) values ("District of Columbiachella", "2024-4-12 10:00:00", "It’s like Coachella but even worse somehow", 1);
+insert into event(event_name, date_time, event_desc, venue_name) values ("District of Columbiachella", "2024-4-12 10:00:00", "It’s like Coachella but even worse somehow", "The 9:30 Club");
 
 -- EVENT 3
-insert into event(event_name, date_time, event_desc, venue_id) values ("All-American Closed Mic", "2024-11-05 12:00:00", "This replaced the election, no one was voting anyways", 4);
+insert into event(event_name, date_time, event_desc, venue_name) values ("All-American Closed Mic", "2024-11-05 12:00:00", "This replaced the election, no one was voting anyways", "The White House");
 
 -- EVENT 4
-insert into event(event_name, date_time, event_desc, venue_id) values ("Eras Tour: Reefville", "2024-06-19 18:00:00", "Taylor Swift in her hometown!", 3);
+insert into event(event_name, date_time, event_desc, venue_name) values ("Eras Tour: Reefville", "2024-06-19 18:00:00", "Taylor Swift in her hometown!", "The Ocean");
 
 -- EVENT 5
-insert into event(event_name, date_time, event_desc, venue_id) values ("marcus’ event", "2015-07-13 15:00:00", "hi im marcus", 2);
+insert into event(event_name, date_time, event_desc, venue_name) values ("marcus’ event", "2015-07-13 15:00:00", "hi im marcus", "The Canal Club");
 
 -- EVENT 6
-insert into event(event_name, date_time, event_desc, venue_id) values ("Hood College Class of 2024 Graduation", "2024-05-18 10:00:00", 5);
+insert into event(event_name, date_time, event_desc, venue_name) values ("Hood College Class of 2024 Graduation", "2024-05-18 10:00:00", "Hood College");
 
 -- PRODUCES RELATION
-insert into produces(artist_name, song_name) values (1, 1);
-insert into produces(artist_name, song_name) values (2, 2);
-insert into produces(artist_name, song_name) values (3, 3);
-insert into produces(artist_name, song_name) values (2, 4);
-insert into produces(artist_name, song_name) values (6, 4);
-insert into produces(artist_name, song_name) values (5, 5);
-insert into produces(artist_name, song_name) values (4, 6);
+insert into produces(artist_name, song_name) values ("Lynyrd Skynyrd", "Free Bird");
+insert into produces(artist_name, song_name) values ("Drake", "Master of Puppets");
+insert into produces(artist_name, song_name) values ("Taylor Swift", "Wildest Dreams");
+insert into produces(artist_name, song_name) values ("Drake", "God's Plan");
+insert into produces(artist_name, song_name) values ("Joe Biden", "God's Plan");
+insert into produces(artist_name, song_name) values ("Ludwig von Beethoven's Reanimated Corpse", "Symphony No. 5");
+insert into produces(artist_name, song_name) values ("Marcus", "the song");
 
 -- PLAYS_AT RELATION
-insert into plays_at(song_name, event_name) values (4, 6);
-insert into plays_at(song_name, event_name) values (5, 1);
-insert into plays_at(song_name, event_name) values (6, 5);
-insert into plays_at(song_name, event_name) values (3, 4);
-insert into plays_at(song_name, event_name) values (4, 3);
-insert into plays_at(song_name, event_name) values (3, 6);
+insert into plays_at(song_name, event_name) values ("God's Plan", "Hood College Class of 2024 Graduation");
+insert into plays_at(song_name, event_name) values ("Symphony No. 5", "The Day of Reckoning");
+insert into plays_at(song_name, event_name) values ("the song", "marcus' event");
+insert into plays_at(song_name, event_name) values ("Wildest Dreams", "Eras Tour: Reefville");
+insert into plays_at(song_name, event_name) values ("God's Plan", "All-American Closed Mic");
+insert into plays_at(song_name, event_name) values ("Wildest Dreams", "Hood College Class of 2024 Graduation");
 
 -- ORGANIZER RELATION
-insert into organizer(event_name, org_name) values (1, "Johnson");
-insert into organizer(event_name, org_name) values (2, "Sonjohn");
-insert into organizer(event_name, org_name) values (3, "Jonsohn");
-insert into organizer(event_name, org_name) values (4, "Sonnhoj");
-insert into organizer(event_name, org_name) values (5, "Hoj");
-insert into organizer(event_name, org_name) values (6, "Nhosnoj");
+insert into organizer(event_name, org_name) values ("The Day of Reckoning", "Johnson");
+insert into organizer(event_name, org_name) values ("District of Columbiachella", "Sonjohn");
+insert into organizer(event_name, org_name) values ("All-American Closed Mic", "Jonsohn");
+insert into organizer(event_name, org_name) values ("Eras Tour: Reefville", "Sonnhoj");
+insert into organizer(event_name, org_name) values ("marcus' event", "Hoj");
+insert into organizer(event_name, org_name) values ("Hood College Class of 2024 Graduation", "Nhosnoj");
 
 -- PERFORMS_AT RELATION
-insert into performs_at(artist_name, event_name) values (2, 6);
-insert into performs_at(artist_name, event_name) values (6, 6);
-insert into performs_at(artist_name, event_name) values (5, 1);
-insert into performs_at(artist_name, event_name) values (4, 5);
-insert into performs_at(artist_name, event_name) values (3, 4);
-insert into performs_at(artist_name, event_name) values (6, 3);
-insert into performs_at(artist_name, event_name) values (6, 2);
+insert into performs_at(artist_name, event_name) values ("Drake", "Hood College Class of 2024 Graduation");
+insert into performs_at(artist_name, event_name) values ("Joe Biden", "Hood College Class of 2024 Graduation");
+insert into performs_at(artist_name, event_name) values ("Ludwig von Beethoven's Reanimated Corpse", "The Day of Reckoning");
+insert into performs_at(artist_name, event_name) values ("Marcus", "marcus' event");
+insert into performs_at(artist_name, event_name) values ("Taylor Swift", "Eras Tour: Reefville");
+insert into performs_at(artist_name, event_name) values ("Joe Biden", "All-American Closed Mic");
+insert into performs_at(artist_name, event_name) values ("Joe Biden", "District of Columbiachella");
 
 -- ACCOUNT RELATION
-insert into account(username, acc_birth_date, join_date, acc_bio, city_id) values ("achang04", "2004-08-12", "202-03-15", "hi", 7);
-insert into account(username, acc_birth_date, join_date, acc_bio, city_id) values ("bryced", "2004-09-09", "2019-11-12", "hello", 7);
-insert into account(username, acc_birth_date, join_date, acc_bio, city_id) values ("theGuy", "1994-03-08", "2009-09-09", "im he", 2);
-insert into account(username, acc_birth_date, join_date, acc_bio, city_id) values ("friendlyfella", "1958-11-14", "2008-12-10", "welcome 2 my profile :)", 5);
-insert into account(username, acc_birth_date, join_date, acc_bio, city_id) values ("CONCERTMAN", "2013-08-10", "2018-08-10", "The worlds most OBJECTIVE concetr reveiwer", 4);
-insert into account(username, acc_birth_date, join_date, acc_bio, city_id) values ("Student15", "2002-01-02", "2015-07-23", "just a guy", 1);
+insert into account(username, acc_birth_date, join_date, acc_bio, city_name) values ("achang04", "2004-08-12", "202-03-15", "hi", "Frederick");
+insert into account(username, acc_birth_date, join_date, acc_bio, city_name) values ("bryced", "2004-09-09", "2019-11-12", "hello", "Frederick");
+insert into account(username, acc_birth_date, join_date, acc_bio, city_name) values ("theGuy", "1994-03-08", "2009-09-09", "im he", "Richmond");
+insert into account(username, acc_birth_date, join_date, acc_bio, city_name) values ("friendlyfella", "1958-11-14", "2008-12-10", "welcome 2 my profile :)", "Hibbert's Gore");
+insert into account(username, acc_birth_date, join_date, acc_bio, city_name) values ("CONCERTMAN", "2013-08-10", "2018-08-10", "The worlds most OBJECTIVE concetr reveiwer", "Mogadishu");
+insert into account(username, acc_birth_date, join_date, acc_bio, city_name) values ("Student15", "2002-01-02", "2015-07-23", "just a guy", "Washington, D.C.");
 
 -- REVIEW RELATION
-insert into review(score, review_date, review_text, event_id, username) values (1, "2024-05-19", "worst show i have EVER been too!", 6, "CONCERTMAN");
-insert into review(score, review_date, review_text, event_id, username) values (2, "2024-06-12", "this is the SECONC worst show i have vever been two!", 4, "CONCERTMAN");
-insert into review(score, review_date, review_text, event_id, username) values (4, "2022-03-13", NULL, 5, "bryced");
-insert into review(score, review_date, review_text, event_id, username) values (3, "2024-12-05", "ok", 3, "CONCERTMAN");
-insert into review(score, review_date, review_text, event_id, username) values (4, "2024-05-20", NULL, 6, "Student15");
-insert into review(score, review_date, review_text, event_id, username) values (5, "2024-07-03", "really nice concert :)", 4, "friendlyfella");
+insert into review(score, review_date, review_text, event_name, username) values (1, "2024-05-19", "worst show i have EVER been too!", "Hood College Class of 2024 Graduation", "CONCERTMAN");
+insert into review(score, review_date, review_text, event_name, username) values (2, "2024-06-12", "this is the SECONC worst show i have vever been two!", "Eras Tour: Reefville", "CONCERTMAN");
+insert into review(score, review_date, review_text, event_name, username) values (4, "2022-03-13", NULL, "marcus' event", "bryced");
+insert into review(score, review_date, review_text, event_name, username) values (3, "2024-12-05", "ok", "All-American Closed Mic", "CONCERTMAN");
+insert into review(score, review_date, review_text, event_name, username) values (4, "2024-05-20", NULL, "Hood College Class of 2024 Graduation", "Student15");
+insert into review(score, review_date, review_text, event_name, username) values (5, "2024-07-03", "really nice concert :)", "Eras Tour: Reefville", "friendlyfella");
 
 -- TICKET RELATION
-insert into ticket(price, purchase_date, username, event_id) values (10000.00, "2024-04-30", "bryced", 4);
-insert into ticket(price, purchase_date, username, event_id) values (30.00, "2023-07-22", "friendlyfella", 2);
-insert into ticket(price, purchase_date, username, event_id) values (30.00, "2023-03-14", "Student15", 6);
-insert into ticket(price, purchase_date, username, event_id) values (100.00, "2024-10-05", "Student15", 3);
-insert into ticket(price, purchase_date, username, event_id) values (35.00, "2024-12-20", "theGuy", 1);
-insert into ticket(price, purchase_date, username, event_id) values (3.00, "2014-10-28", "achang04", 5);
+insert into ticket(price, purchase_date, username, event_name) values (10000.00, "2024-04-30", "bryced", "Eras Tour: Reefville");
+insert into ticket(price, purchase_date, username, event_name) values (30.00, "2023-07-22", "friendlyfella", "District of Columbiachella");
+insert into ticket(price, purchase_date, username, event_name) values (30.00, "2023-03-14", "Student15", "Hood College Class of 2024 Graduation");
+insert into ticket(price, purchase_date, username, event_name) values (100.00, "2024-10-05", "Student15", "All-American Closed Mic");
+insert into ticket(price, purchase_date, username, event_name) values (35.00, "2024-12-20", "theGuy", "The Day of Reckoning");
+insert into ticket(price, purchase_date, username, event_name) values (3.00, "2014-10-28", "achang04", "marcus' event");
