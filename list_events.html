@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}	 
+	 <div>
+		<h1>Events: "{query}"</h1>
+		{% if not events %}
+			<p>No results</p>
+		{% else %}
+			<div class="celltable">
+				<div class="cellrow">
+					<div class="cell">
+						<h1>Title</h1>
+						<p>The Venue<br>7:00 PM, 28 April 2024</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+				
+				
+					<div class="cell">
+						<h1>Second Title</h1>
+						<p>The Other Venue<br>7:30 PM, 15 December 2024</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+					
+					<div class="cell">
+						<h1>Third Title</h1>
+						<p>The Third Venue<br>7:30 PM, 20 February 2025</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+				</div>
+				
+				<div class="cellrow">
+					<div class="cell">
+						<h1>Fourth Title</h1>
+						<p>The Venue<br>7:00 PM, 28 April 2024</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+				
+				
+					<div class="cell">
+						<h1>Fifth Title</h1>
+						<p>The Middle of Nowhere<br>7:30 PM, 15 December 2024</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+					
+					<div class="cell">
+						<h1>Sixth Title</h1>
+						<p>The Venue<br>7:30 PM, 20 February 2025</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+				</div>
+
+
+				<div class="cellrow">
+					<div class="cell">
+						<h1>Seventh Title</h1>
+						<p>The Other Venue<br>7:00 PM, 28 April 2024</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+					
+					<div class="cell">
+						<h1>Eighth Title</h1>
+						<p>the voices are getting louder<br>7:00 PM, 28 April 2024</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
