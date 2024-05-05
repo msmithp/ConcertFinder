@@ -46,7 +46,7 @@ def search_events():
     return render_template("search_events.html")
 
 
-@app.route('/event_search')
+@app.route('/event_search', methods=['POST'])
 def do_event_search():
     query = request.form["query"]
     events = get_events(query)
@@ -55,7 +55,7 @@ def do_event_search():
 
 @app.route('/list_events')
 def list_events():
-    
+    pass
 
 
 @app.route('/account')

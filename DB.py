@@ -14,8 +14,22 @@ def get_user(username):
     # if username is not registered in the database, return None
     return {"username": username}
 
+
 def get_events(query):
-    pass
+    # return [("The Day of Reckoning", "2024-12-22 19:00:00", "Beethoven reanimates at the 9:30 Club", "The 9:30 Club"),
+    #         ("District of Columbiachella", "2024-4-12 10:00:00", "It’s like Coachella but even worse somehow", "The 9:30 Club"),
+    #         ("All-American Closed Mic", "2024-11-05 12:00:00", "This replaced the election, no one was voting anyways", "The White House"),
+    #         ("Eras Tour: Reefville", "2024-06-19 18:00:00", "Taylor Swift in her hometown!", "The Ocean"),
+    #         ("Eras Tour: Reefville", "2024-06-19 18:00:00", "Taylor Swift in her hometown!", "The Ocean")]
+
+    return [{"event_name": "The Day of Reckoning", "date_time": "2024-12-22 19:00:00",
+             "event_desc": "Beethoven reanimates at the 9:30 Club", "venue_name": "The 9:30 Club"},
+            {"event_name": "District of Columbiachella", "date_time": "2024-04-12 10:00:00",
+             "event_desc": "It’s like Coachella but even worse somehow", "venue_name": "The 9:30 Club"},
+            {"event_name": "All-American Closed Mic", "date_time": "2024-11-05 12:00:00",
+             "event_desc": "This replaced the election, no one was voting anyways", "venue_name": "The White House"},
+            {"event_name": "Eras Tour: Reefville", "date_time": "2024-06-19 18:00:00",
+             "event_desc": "Taylor Swift in her hometown!", "venue_name": "The Ocean"}]
 
 
 def get_artists(query):

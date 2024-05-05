@@ -1,75 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}	 
 	 <div>
-		<h1>Events: "{query}"</h1>
+		<h1>Events: "{{query}}"</h1>
 		{% if not events %}
 			<p>No results</p>
 		{% else %}
 			<div class="celltable">
+				<!-- Number of rows is ceil(num_events / 3) -->
+				{% set num_rows = (events|length / 3)|round(method='ceil')|int %}
+				{% for row in range(num_rows) %}
 				<div class="cellrow">
+					<!-- Place 3 cells in row, or however many remain -->
+					{% for i in range(row * 3, (row + 1) * 3) if i < events|length %}
 					<div class="cell">
-						<h1>Title</h1>
-						<p>The Venue<br>7:00 PM, 28 April 2024</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
+						<h1>{{events[i].event_name}}</h1>
+						<p>{{events[i].venue_name}}<br>{{events[i].date_time}}</p>
+						<p>{{events[i].event_desc}}</p>
 					</div>
-				
-				
-					<div class="cell">
-						<h1>Second Title</h1>
-						<p>The Other Venue<br>7:30 PM, 15 December 2024</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
-					
-					<div class="cell">
-						<h1>Third Title</h1>
-						<p>The Third Venue<br>7:30 PM, 20 February 2025</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
+					{% endfor %}
 				</div>
-				
-				<div class="cellrow">
-					<div class="cell">
-						<h1>Fourth Title</h1>
-						<p>The Venue<br>7:00 PM, 28 April 2024</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
-				
-				
-					<div class="cell">
-						<h1>Fifth Title</h1>
-						<p>The Middle of Nowhere<br>7:30 PM, 15 December 2024</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
-					
-					<div class="cell">
-						<h1>Sixth Title</h1>
-						<p>The Venue<br>7:30 PM, 20 February 2025</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
-				</div>
-
-
-				<div class="cellrow">
-					<div class="cell">
-						<h1>Seventh Title</h1>
-						<p>The Other Venue<br>7:00 PM, 28 April 2024</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
-					
-					<div class="cell">
-						<h1>Eighth Title</h1>
-						<p>the voices are getting louder<br>7:00 PM, 28 April 2024</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 		{% endif %}
 	</div>
