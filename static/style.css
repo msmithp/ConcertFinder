@@ -15,7 +15,7 @@ body {
 	width:			96%;
 	height:			96%;
 	
-	animation: fadeInAnimation ease 1.2s;
+	animation: fadeInAnimation ease 0.4s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 }
@@ -241,3 +241,30 @@ li a:hover:not(.active) {
 	transition: 0.1s;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                  STYLED LIST                    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * */
+.styledlist {
+	text-align: center;
+	margin: auto;
+}
+ 
+.styledlistitem {
+	background-color: #2f374b;
+	margin-top: 16px;
+	padding: 20px;
+	border-radius: 15px;
+	transition: 0.2s;
+	display: block;
+	text-align: left;
+}
+ 
+.styledlistitem:hover {
+	background-color: #3f4963;
+	transition: 0.05s;
+}
+ 
+.styledlistitem h1 {
+	font-size: 25px;
+	line-height: 20px;
+}
