@@ -1,9 +1,26 @@
 # main.py controller
 from flask import Flask, redirect, request, url_for, render_template, session
-from DB import get_user, get_events, get_artists
+from DB import get_user, get_events, get_artists, get_upcoming_events, get_tickets
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"  # very secure
+
+
+@app.context_processor
+def utility_processor():
+    def format_datetime(dt):
+        # turn to datetime object
+        date = datetime.strptime(dt, "%Y-%m-%d %H:%M:%S")
+
+        # get day and hour as decimal value
+        day = int(date.strftime("%d"))
+        hr = int(date.strftime("%I"))
+
+        # return formatted date
+        return date.strftime(f"%a %b {day}, %Y, {hr}:%M %p")
+
+    return dict(format_datetime=format_datetime)
 
 
 @app.route('/')
@@ -16,10 +33,11 @@ def root():
 
 @app.route('/login', methods=['POST'])
 def login():
-    # if session["loggedin"]:
-    #     return redirect(url_for("home"))
+    if session["loggedin"]:
+        return redirect(url_for("home"))
 
     user = get_user(request.form["username"])
+
     if user:
         session["username"] = user["username"]
         session["loggedin"] = True
@@ -33,12 +51,14 @@ def login():
 def logout():
     session.pop("username", None)
     session.pop("loggedin", None)
-    return redirect(url_for(''))
+    return render_template('login.html')
 
 
 @app.route('/home')
 def home():
-    return render_template("index.html")
+    upcoming = get_upcoming_events()
+    tickets = get_tickets(session["username"])
+    return render_template("index.html", upcoming=upcoming, tickets=tickets)
 
 
 @app.route('/search_events')
