@@ -49,6 +49,57 @@ h3 {
 	background: #cc2c3e;
 }
 
+button {
+	color: #ffffff;
+	background-color: #cc2c3e;
+	font-family: "Questrial", sans-serif;
+	font-size: 20px;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                      LOGIN                      *
+ * * * * * * * * * * * * * * * * * * * * * * * * * */
+ 
+.login {
+	text-align: center;
+	margin: 0 auto;
+	width: 30%;
+	padding: 20px;
+	border-radius: 20px;
+	background-color: #2f374b;
+}
+
+.login input {
+	border-radius: 20px;
+	padding: 8px;
+	transition: 0.1s;
+	width: 85%;
+	display: inline-block;
+	background-color: #ced0d6;
+	font-family: "Questrial";
+}
+
+.login label {
+	float: left;
+	padding: 0 6% 1% 6%;
+	display: block;
+}
+
+.login button {
+	text-align: center;
+	margin: auto;
+	margin-top: 15px;
+	display: block;
+}
+
+.login ::placeholder {
+	font-family: "Questrial";
+	color: #6d6f75;
+}
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     TABLES                      *
  * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -142,7 +193,7 @@ tr {
 
 .cell h1 {
 	font-size: 30px;
-	line-height: 30px;
+	line-height: 38px;
 	margin-left: 2%;
 	margin-right: 2%;
 }
@@ -234,6 +285,7 @@ li a:hover:not(.active) {
 
 .searchbar ::placeholder {
 	color: #858b99;
+	font-family: "Questrial";
 }
 
 .searchbar input:focus {
@@ -241,9 +293,14 @@ li a:hover:not(.active) {
 	transition: 0.1s;
 }
 
+.searchbar button {
+	margin-top: 10px;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * *
  *                  STYLED LIST                    *
  * * * * * * * * * * * * * * * * * * * * * * * * * */
+ 
 .styledlist {
 	text-align: center;
 	margin: auto;
