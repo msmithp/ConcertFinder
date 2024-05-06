@@ -44,20 +44,24 @@ def login():
         return redirect(url_for("home"))
     else:
         # invalid username message goes here
-        redirect(url_for('/'))
+        redirect("/")
 
 
 @app.route('/logout')
 def logout():
     session.pop("username", None)
     session.pop("loggedin", None)
-    return render_template('login.html')
+    return redirect("/")
 
 
 @app.route('/home')
 def home():
     upcoming = get_upcoming_events()
-    tickets = get_tickets(session["username"])
+    if session["loggedin"]:
+        tickets = get_tickets(session["username"])
+    else:
+        tickets = None
+
     return render_template("index.html", upcoming=upcoming, tickets=tickets)
 
 
