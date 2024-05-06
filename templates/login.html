@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 	<div>
-		<h1>Login</h1>
+		<h1 style="text-align: center;">Login</h1>
 		<form action="/login" method="POST">
 			<div class="login">
-				<label>Username <input type=text name=username placeholder="Enter username"></label>
+				<label>Username:</label>
+				<input type=text name=username placeholder="Enter username...">
 				<button type="submit">Login</button>
 			</div>
 		</form>
