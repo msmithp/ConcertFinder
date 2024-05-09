@@ -12,7 +12,7 @@
 		<h1>Upcoming Events</h1>
 		<div class="celltable">
 			<div class="cellrow">
-				{% for i in range(3) %}
+				{% for i in range(3) if i < upcoming|length %}
 				<div class="cell">
 					<h1>{{upcoming[i].event_name}}</h1>
 					<p>{{upcoming[i].venue_name}}<br>{{format_datetime(upcoming[i].date_time)}}</p>
