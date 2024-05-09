@@ -30,6 +30,11 @@ def get_artists(query):
     pass
 
 
+def get_cities():
+    return ({"city_name": "Frederick", "country": "United States of America", "latitude": 39.4143, "longitude": 77.4105},
+            {"city_name": "Reefville", "country": "United States of America", "latitude": -48.8766, "longitude": -123.3933})
+
+
 def get_upcoming_events():
     # This should return the 3 events with the soonest date_time attribute
     return [{"event_name": "The Day of Reckoning", "date_time": "2024-12-22 19:00:00",
@@ -44,6 +49,12 @@ def get_tickets(username):
     # Get the tickets owned by the user
     return [{"price": 10000.0, "purchase_date": "2024-04-30",
              "username": "bryced", "event_name": "Eras Tour: Reefville", "event_desc": "Taylor Swift in her hometown!"}]
+
+
+def insert_user(user):
+    # Logic here to insert a new user into the database
+    pass
+
 
 # def open_connection():
 #     unix_socket = '/cloudsql/{}'.format(db_connection_name)

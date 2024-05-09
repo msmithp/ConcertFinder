@@ -1,6 +1,6 @@
 # main.py controller
-from flask import Flask, redirect, request, url_for, render_template, session
-from DB import get_user, get_events, get_artists, get_upcoming_events, get_tickets
+from flask import Flask, redirect, request, url_for, render_template, session, jsonify
+from DB import get_user, get_events, get_artists, get_upcoming_events, get_tickets, insert_user, get_cities
 from datetime import datetime
 
 app = Flask(__name__)
@@ -20,31 +20,56 @@ def utility_processor():
         # return formatted date
         return date.strftime(f"%a %b {day}, %Y, {hr}:%M %p")
 
-    return dict(format_datetime=format_datetime)
+    def cities():
+        return get_cities()
+
+    return dict(format_datetime=format_datetime, cities=cities)
 
 
 @app.route('/')
 def root():
     session["loggedin"] = False
 
-    # login.html should have action="/login.html" in the form tag
-    return render_template('login.html')
+    # return render_template('login.html')
+    return redirect(url_for("login"))
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if session["loggedin"]:
-        return redirect(url_for("home"))
+    # no message by default
+    msg = None
+    user = None
 
-    user = get_user(request.form["username"])
+    # if user input something...
+    if request.method == 'POST':
+        user = get_user(request.form["username"])
+        if user["username"] != "username":  # replace with actual logic
+            msg = "Invalid login"
+        else:
+            session["username"] = user["username"]
+            session["loggedin"] = True
+            return redirect(url_for("home"))
 
-    if user:
-        session["username"] = user["username"]
-        session["loggedin"] = True
-        return redirect(url_for("home"))
-    else:
-        # invalid username message goes here
-        redirect("/")
+    return render_template("login.html", msg=msg, user=user)
+
+
+@app.route("/create_account", methods=['GET', 'POST'])
+def create_account():
+    # no message by default
+    msg = None
+    new_user = None
+
+    # if user input something...
+    if request.method == 'POST':
+        new_user = request.form
+        print(new_user["city"])
+        if new_user["username"] != "username":  # replace with actual logic to test if username is taken
+            msg = "Username is already taken"
+        else:
+            create_account(new_user)
+            return redirect(url_for("login"))
+
+    return render_template("create_account.html", msg=msg, user=new_user)
 
 
 @app.route('/logout')
