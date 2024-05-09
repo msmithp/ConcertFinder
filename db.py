@@ -23,9 +23,11 @@ def open_connection():
 
 
 def get_user(username):
-    # do something with `username` in the database
-    # if username is not registered in the database, return None
-    return {"username": username}
+    conn = open_connection()
+    with conn.cursor() as cursor:
+        cursor.execute(f"SELECT username FROM account WHERE username = '{username}'")
+        result = cursor.fetchone()
+        return result
 
 
 def get_events(query):
@@ -59,21 +61,20 @@ def get_upcoming_events():
 
 def get_tickets(username):
     # Get the tickets owned by the user
-    return [{"price": 10000.0, "purchase_date": "2024-04-30",
-             "username": "bryced", "event_name": "Eras Tour: Reefville", "event_desc": "Taylor Swift in her hometown!"}]
+    conn = open_connection()
+    with conn.cursor() as cursor:
+        cursor.execute(f"SELECT e.event_name, e.event_desc, t.purchase_date, t.price FROM event e, ticket t, account a WHERE a.username = t.username AND t.event_name = e.event_name AND a.username = '{username}' GROUP BY t.purchase_id ORDER BY t.purchase_date desc;")
+        result = cursor.fetchall()
+        return result
 
 
-def insert_user(user):
-    # Logic here to insert a new user into the database
-    pass
+def insert_user(username, birthday, city, bio):
+    conn = open_connection()
+    with conn.cursor() as cursor:
+        cursor.execute(f"INSERT INTO account (username, acc_birth_date, join_date, acc_bio, city_name) VALUES ('{username}', '{birthday}', CURRENT_DATE(), '{bio}', '{city}');")
+        conn.commit()
+        conn.close()
 
-
-# def get_customers():
-#     conn = open_connection()
-#     with conn.cursor() as cursor:
-#         cursor.execute("select * from customers;")
-#         result = cursor.fetchall()
-#         return result
 
 # def create(name, street, city):
 #     conn = open_connection()
