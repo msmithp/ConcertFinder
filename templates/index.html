@@ -30,6 +30,7 @@
 				<div class="styedlist">
 					<div class="styledlistitem">
 						<h1>{{ticket.event_name}}</h1>
+						<p>Purchased on {{format_date(ticket.purchase_date)}} for ${{ticket.price}}</p>
 						<p>{{ticket.event_desc}}</p>
 					</div>
 				</div>
