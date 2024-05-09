@@ -1,15 +1,15 @@
-DROP TABLE IF EXISTS artist;
-DROP TABLE IF EXISTS song;
-DROP TABLE IF EXISTS produces;
-DROP TABLE IF EXISTS event;
-DROP TABLE IF EXISTS organizer;
-DROP TABLE IF EXISTS plays_at;
-DROP TABLE IF EXISTS performs_at;
-DROP TABLE IF EXISTS venue;
+DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS ticket;
+DROP TABLE IF EXISTS performs_at;
+DROP TABLE IF EXISTS organizer;
+DROP TABLE IF EXISTS plays_at;
+DROP TABLE IF EXISTS produces;
+DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS venue;
 DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS song;
+DROP TABLE IF EXISTS artist;
 
 create table artist(
 	artist_name VARCHAR(70),
@@ -32,7 +32,7 @@ create table city(
 	country VARCHAR(50),
 	latitude DECIMAL(9, 6),
 	longitude DECIMAL(9,6),
-	primary key(city_name, country)
+	primary key(city_name)
 );
 
 create table venue(
@@ -48,7 +48,7 @@ create table event(
 	event_name VARCHAR(70),
 	date_time DATETIME NOT NULL,
 	event_desc VARCHAR(150),
-	venue_name INTEGER NOT NULL,
+	venue_name VARCHAR(70) NOT NULL,
 	primary key(event_name),
 	foreign key(venue_name) references venue(venue_name)
 );
@@ -91,9 +91,8 @@ create table account(
 	join_date DATE,
 	acc_bio VARCHAR(150),
 	city_name VARCHAR(50) NOT NULL,
-	country VARCHAR(50) NOT NULL,
 	primary key(username),
-	foreign key(city_name, country) references city(city_name, country)
+	foreign key(city_name) references city(city_name)
 );
 
 create table review(
@@ -115,7 +114,7 @@ create table ticket(
 	username VARCHAR(30) NOT NULL,
 	event_name VARCHAR(70) NOT NULL,
 	primary key(purchase_id),
-	foreign key(username) references account,
+	foreign key(username) references account(username),
 	foreign key(event_name) references event(event_name)
 );
 
@@ -212,10 +211,10 @@ insert into event(event_name, date_time, event_desc, venue_name) values ("All-Am
 insert into event(event_name, date_time, event_desc, venue_name) values ("Eras Tour: Reefville", "2024-06-19 18:00:00", "Taylor Swift in her hometown!", "The Ocean");
 
 -- EVENT 5
-insert into event(event_name, date_time, event_desc, venue_name) values ("marcus’ event", "2015-07-13 15:00:00", "hi im marcus", "The Canal Club");
+insert into event(event_name, date_time, event_desc, venue_name) values ("marcus' event", "2015-07-13 15:00:00", "hi im marcus", "The Canal Club");
 
 -- EVENT 6
-insert into event(event_name, date_time, event_desc, venue_name) values ("Hood College Class of 2024 Graduation", "2024-05-18 10:00:00", "Hood College");
+insert into event(event_name, date_time, event_desc, venue_name) values ("Hood College Class of 2024 Graduation", "2024-05-18 10:00:00", "Congratulations, graduates!", "Hood College");
 
 -- PRODUCES RELATION
 insert into produces(artist_name, song_name) values ("Lynyrd Skynyrd", "Free Bird");
