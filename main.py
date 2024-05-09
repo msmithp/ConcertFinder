@@ -1,6 +1,6 @@
 # main.py controller
 from flask import Flask, redirect, request, url_for, render_template, session, jsonify
-from DB import get_user, get_events, get_artists, get_upcoming_events, get_tickets, insert_user, get_cities
+from db import get_user, get_events, get_artists, get_upcoming_events, get_tickets, insert_user, get_cities
 from datetime import datetime
 
 app = Flask(__name__)
@@ -10,15 +10,12 @@ app.secret_key = "supersecretkey"  # very secure
 @app.context_processor
 def utility_processor():
     def format_datetime(dt):
-        # turn to datetime object
-        date = datetime.strptime(dt, "%Y-%m-%d %H:%M:%S")
-
         # get day and hour as decimal value
-        day = int(date.strftime("%d"))
-        hr = int(date.strftime("%I"))
+        day = int(dt.strftime("%d"))
+        hr = int(dt.strftime("%I"))
 
         # return formatted date
-        return date.strftime(f"%a %b {day}, %Y, {hr}:%M %p")
+        return dt.strftime(f"%a %b {day}, %Y, {hr}:%M %p")
 
     def cities():
         return get_cities()
@@ -62,11 +59,10 @@ def create_account():
     # if user input something...
     if request.method == 'POST':
         new_user = request.form
-        print(new_user["city"])
         if new_user["username"] != "username":  # replace with actual logic to test if username is taken
             msg = "Username is already taken"
         else:
-            create_account(new_user)
+            insert_user(new_user)
             return redirect(url_for("login"))
 
     return render_template("create_account.html", msg=msg, user=new_user)
@@ -102,15 +98,8 @@ def do_event_search():
     return render_template('list_events.html', query=query, events=events)
 
 
-@app.route('/list_events')
-def list_events():
-    pass
-
-
 @app.route('/account')
 def account():
-    if not session["loggedin"]:
-        return redirect(url_for(''))
     return render_template("account.html")
 
 # @app.route('/about')
