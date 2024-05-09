@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div>
+		<h1 style="text-align: center;">Create Account</h1>
+		<form action="/create_account" class="login" style="width: 50%;" method="POST">
+			<label>Username <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<input type=text name=username placeholder="Enter username..." required
+				{% if user %}
+					value={{user["username"]}}
+				{% endif %}
+			>
+			
+			<label>Birthday <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<input type=date name=birthday required
+				{% if user %}
+					value={{user["birthday"]}}
+				{% endif %}
+			>
+			
+			<label>City <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<select name="city" required>
+				{% for city in cities() %}
+					<option>{{city.city_name}}, {{city.country}}</option>
+				{% endfor %}
+			</select>
+			
+			<label>Bio</label>
+			<textarea name=bio placeholder="Tell us a little about yourself...">{% if user %}{{user["bio"]}}{% endif %}</textarea>
+			
+			<button type="submit">Create Account</button>
+		</form>
+		
+		<div style="text-align: center; margin-top: 15px;">
+			<button class="linkbutton"><a href="/login" style="color: #dce0e0;">Back to Login</a></button>
+		</div>
+	</div>
+	
+	<div id="popupOverlay" class="overlay">
+		<div class="popup">
+			<p>{{msg}}</p>
+			<button onclick="togglePopup('popupOverlay')">OK</button>
+		</div>
+	</div>
+	
+	<script language="javascript">
+		function togglePopup(name) {
+			const overlay = document.getElementById(name);
+			overlay.classList.toggle("show");
+		}
+		
+		if ("{{msg}}" != "None") {
+			togglePopup("popupOverlay");
+		}
+	</script>
+{% endblock %}

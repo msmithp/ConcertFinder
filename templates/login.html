@@ -1,53 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
-	<script>
-		function togglePopup() {
-			const overlay = document.getElementById("popupOverlay");
-			overlay.classList.toggle("show");
-		}
-	</script>
-
 	<div>
 		<h1 style="text-align: center;">Login</h1>
 		<form action="/login" method="POST">
 			<div class="login">
 				<label>Username:</label>
-				<input type=text name=username placeholder="Enter username...">
+				<input type=text name=username id="loginUsername" placeholder="Enter username..."
+					{% if user %}
+						value={{user["username"]}}
+					{% endif %}
+				>
 				<button type="submit">Login</button>
 			</div>
 		</form>
 		<div style="text-align: center; margin-top: 15px;">
-			<button class="linkbutton" onclick="togglePopup()">Create account</button>
+			<button class="linkbutton"><a href="/create_account" style="color: #dce0e0;">Create account</a></button>
 		</div>
 	</div>
 	
 	<div id="popupOverlay" class="overlay">
 		<div class="popup">
-			<h2 style="text-align: center;">Create Account</h2>
-			<form class="login" style="width: 80%;">
-				<label>Username</label>
-				<input type=text name=username placeholder="Enter username...">
-				
-				<label>Birthday</label>
-				<input type=date name=birthday>
-				
-				<label>City</label>
-				<input list="cities" name="city">
-				<datalist id="cities">
-					<!-- QUERY DATABASE FOR ALL CITIES IN ALPHABETICAL ORDER HERE-->
-					<!-- https://stackoverflow.com/a/43579819 -->
-					<option value="Frederick">
-					<option value="Washington, D.C.">
-					<option value="Reefville">
-					<option value="Mogadishu">
-				</datalist>
-				
-				<label>Bio</label>
-				<textarea name=bio></textarea>
-				
-				<button type="submit">Create Account</button>
-				<button onclick="togglePopup()">Cancel</button>
-			</form>
+			<p>{{msg}}</p>
+			<button onclick="togglePopup('popupOverlay')">OK</button>
 		</div>
 	</div>
+	
+	<script language="javascript">
+		function togglePopup(name) {
+			const overlay = document.getElementById(name);
+			overlay.classList.toggle("show");
+		}
+		
+		if ("{{msg}}" != "None") {
+			togglePopup("popupOverlay");
+		}
+	</script>
 {% endblock %}

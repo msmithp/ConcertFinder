@@ -12,7 +12,13 @@
 			<li><a href="/search_events">Events</a></li>
 			<li><a href="/search_artists">Artists</a></li>
 			<li><a href="/account">My Account</a></li>
-			<li style="float:right"><a href="/logout">Log Out</a></li>
+			<li style="float:right"><a href="/logout">
+				{% if session["loggedin"] %}
+					Log Out
+				{% else %}
+					Log In
+				{% endif %}
+			</a></li>
 		 </ul>
 	 </div>
 <div>
