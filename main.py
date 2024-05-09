@@ -14,20 +14,26 @@ def utility_processor():
         day = int(dt.strftime("%d"))
         hr = int(dt.strftime("%I"))
 
-        # return formatted date
+        # return formatted datetime
         return dt.strftime(f"%a %b {day}, %Y, {hr}:%M %p")
+
+    def format_date(d):
+        # get day as decimal value
+        day = int(d.strftime("%d"))
+
+        # return formatted date
+        return d.strftime(f"%a %b {day}, %Y")
 
     def cities():
         return get_cities()
 
-    return dict(format_datetime=format_datetime, cities=cities)
+    return dict(format_datetime=format_datetime, format_date=format_date, cities=cities)
 
 
 @app.route('/')
 def root():
     session["loggedin"] = False
 
-    # return render_template('login.html')
     return redirect(url_for("login"))
 
 
@@ -40,7 +46,7 @@ def login():
     # if user input something...
     if request.method == 'POST':
         user = get_user(request.form["username"])
-        if user["username"] != "username":  # replace with actual logic
+        if not user:
             msg = "Invalid login"
         else:
             session["username"] = user["username"]
@@ -59,10 +65,10 @@ def create_account():
     # if user input something...
     if request.method == 'POST':
         new_user = request.form
-        if new_user["username"] != "username":  # replace with actual logic to test if username is taken
+        if get_user(new_user["username"]):
             msg = "Username is already taken"
         else:
-            insert_user(new_user)
+            insert_user(new_user["username"], new_user["birthday"], new_user["city"], new_user["bio"])
             return redirect(url_for("login"))
 
     return render_template("create_account.html", msg=msg, user=new_user)
