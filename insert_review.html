@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Leave a Review</h2>
+    <form action="/add" method="POST">
+        <div></div><label>Score</label>: <input type=text name=score value="Type here"></div>
+        <div></div><label>Text</label>: <input type=text name=review_text  value="Type here"></div>
+        <div></div><label>Event</label>: <input type=text name=event_name  value="Type here"></div>
+	    <div><button type="submit">Submit</button></div>
+    </form>
+{% endblock %}
