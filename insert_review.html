@@ -1,10 +1,51 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h2>Leave a Review</h2>
+		<div>
+		<h1 style="text-align: center;">Leave a Review</h1>
+		<form action="/create_account" class="login" style="width: 50%;" method="POST">
+			<label>Username <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<input type=text name=username placeholder="Enter username..." required
+				{% if user %}
+					value={{user["username"]}}
+				{% endif %}
+			>
+			
+			<label>Birthday <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<input type=date name=birthday required
+				{% if user %}
+					value={{user["birthday"]}}
+				{% endif %}
+			>
+			
+			<label>City <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<select name="city" required>
+				{% for city in cities() %}
+					<option>{{city.city_name}}, {{city.country}}</option>
+				{% endfor %}
+			</select>
+			
+			<label>Bio</label>
+			<textarea name=bio placeholder="Tell us a little about yourself...">{% if user %}{{user["bio"]}}{% endif %}</textarea>
+			
+			<button type="submit">Create Account</button>
+		</form>
+		
+		<div style="text-align: center; margin-top: 15px;">
+			<button class="linkbutton"><a href="/login" style="color: #dce0e0;">Back to Login</a></button>
+		</div>
+	</div>
     <form action="/add" method="POST">
+	    
         <div></div><label>Score</label>: <input type=text name=score value="Type here"></div>
         <div></div><label>Text</label>: <input type=text name=review_text  value="Type here"></div>
-        <div></div><label>Event</label>: <input type=text name=event_name  value="Type here"></div>
+        <div></div><label>Event</label>: 
+	    <select name="city" required>
+				{% for city in cities() %}
+					<option>{{city.city_name}}, {{city.country}}</option>
+				{% endfor %}
+			</select>
+			
+	<input type=text name=event_name  value="Type here"></div>
 	    <div><button type="submit">Submit</button></div>
     </form>
 {% endblock %}
