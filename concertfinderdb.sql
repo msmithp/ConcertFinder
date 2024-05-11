@@ -176,7 +176,7 @@ insert into city(city_name, country, latitude, longitude) values ("Hibbert's Gor
 insert into city(city_name, country, latitude, longitude) values ("Reefville", "United States of America", -48.8766, -123.3933);
 
 -- CITY 7
-insert into city(city_name, country, latitude, longitude) values ("Frederick", "United States of America", 39.4143, 77.4105);
+insert into city(city_name, country, latitude, longitude) values ("Frederick", "United States of America", 39.4143, -77.4105);
 
 -- VENUE RELATION
 -- VENUE 1
