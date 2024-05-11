@@ -273,3 +273,23 @@ insert into ticket(price, purchase_date, username, event_name) values (30.00, "2
 insert into ticket(price, purchase_date, username, event_name) values (100.00, "2024-10-05", "Student15", "All-American Closed Mic");
 insert into ticket(price, purchase_date, username, event_name) values (35.00, "2024-12-20", "theGuy", "The Day of Reckoning");
 insert into ticket(price, purchase_date, username, event_name) values (3.00, "2014-10-28", "achang04", "marcus' event");
+
+-- HAVERSINE FUNCTION
+DROP FUNCTION IF EXISTS haversine;
+DELIMITER //
+CREATE FUNCTION haversine(lat1 DECIMAL(9, 6), long1 DECIMAL(9, 6), lat2 DECIMAL(9, 6), long2 DECIMAL(9, 6)) RETURNS FLOAT DETERMINISTIC
+BEGIN
+    DECLARE radius FLOAT;
+    DECLARE toRad FLOAT;
+    DECLARE dist FLOAT;
+    
+    SET radius = 3958.8;
+    SET toRad = PI() / 180;
+    SET dist = 2 * radius * ASIN(SQRT(
+	    0.5 - COS((lat2 - lat1) * toRad) / 2
+	    + COS(lat1 * toRad) * COS(lat2 * toRad) *
+	    (1 - COS((long2 - long1) * toRad)) / 2
+    ));
+    RETURN dist;
+END //
+DELIMITER ;
