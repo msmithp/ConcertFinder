@@ -15,7 +15,7 @@
 					<div class="cell">
 						<h1>{{events[i].event_name}}</h1>
 						<p>{{events[i].venue_name}}<br>{{format_datetime(events[i].date_time)}}</p>
-						<p>Score: {{events[i].score}}</p>
+						<p>Score: {{events[i].score|round(2)}}</p>
 						{% if session["loggedin"] %}
 							<p>Distance: {{events[i].distance|round(1)}} miles from you</p>
 						{% endif %}

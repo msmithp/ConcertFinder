@@ -26,15 +26,15 @@
 	<div>
 		<h1>Your Tickets</h1>
 		{% if tickets %}
-			{% for ticket in tickets %}
-				<div class="styedlist">
-					<div class="styledlistitem">
-						<h1>{{ticket.event_name}}</h1>
-						<p>Purchased on {{format_date(ticket.purchase_date)}} for ${{ticket.price}}</p>
-						<p>{{ticket.event_desc}}</p>
-					</div>
-				</div>
-			{% endfor %}
+			<div class="styledlist">
+				{% for ticket in tickets %}
+						<div class="styledlistitem">
+							<h1>{{ticket.event_name}}</h1>
+							<p>Purchased on {{format_date(ticket.purchase_date)}} for ${{ticket.price}}</p>
+							<p>{{ticket.event_desc}}</p>
+						</div>
+				{% endfor %}
+			</div>
 		{% else %}
 			<div>
 				<p>You don't have any tickets.</p>

@@ -1,6 +1,6 @@
 # main.py controller
 from flask import Flask, redirect, request, url_for, render_template, session, jsonify
-from db import get_user, get_events, get_artists, get_upcoming_events, get_tickets, insert_user, get_cities
+from db import get_user, get_events, get_artists, get_upcoming_events, get_tickets, insert_user, get_cities, insert_review, get_reviews, get_all_events
 from datetime import datetime
 
 app = Flask(__name__)
@@ -27,7 +27,10 @@ def utility_processor():
     def cities():
         return get_cities()
 
-    return dict(format_datetime=format_datetime, format_date=format_date, cities=cities)
+    def all_events():
+        return get_all_events()
+
+    return dict(format_datetime=format_datetime, format_date=format_date, cities=cities, all_events=all_events)
 
 
 @app.route('/')
@@ -74,6 +77,30 @@ def create_account():
     return render_template("create_account.html", msg=msg, user=new_user)
 
 
+@app.route("/review", methods=['GET', 'POST'])
+def review():
+    if request.method == 'POST' and session["loggedin"]:
+        review = request.form
+        insert_review(session["username"], review["score"], review["event"], review["text"])
+
+        reviews=get_reviews(review["event"])
+        return render_template("list_reviews.html", event_name=review["event"], reviews=reviews)
+    
+    return render_template("review.html")
+
+
+@app.route('/search_reviews')
+def search_reviews():
+    return render_template("search_reviews.html")
+
+
+@app.route('/review_search', methods=['POST'])
+def do_review_search():
+    event_name = request.form["event"]
+    reviews = get_reviews(event_name)
+    return render_template("list_reviews.html", event_name=event_name, reviews=reviews)
+
+
 @app.route('/logout')
 def logout():
     session.pop("username", None)
@@ -102,11 +129,6 @@ def do_event_search():
     query = request.form["query"]
     events = get_events(query, session["username"] if session["loggedin"] else None)
     return render_template('list_events.html', query=query, events=events)
-
-
-@app.route('/account')
-def account():
-    return render_template("account.html")
 
 
 if __name__ == '__main__':

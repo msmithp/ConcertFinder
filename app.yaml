@@ -1,0 +1,8 @@
+#app.yaml
+runtime: python39
+
+env_variables:
+  CLOUD_SQL_USERNAME: mps3-user
+  CLOUD_SQL_PASSWORD: password
+  CLOUD_SQL_DATABASE_NAME: project
+  CLOUD_SQL_CONNECTION_NAME: mps3-cs329:us-east4:mps3-cs329

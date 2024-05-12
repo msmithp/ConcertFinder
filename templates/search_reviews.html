@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}	 
+	 <div>
+		<h1 style="text-align: center;">See Reviews</h1>
+		<form action="/review_search" method="POST">
+			<div class="searchbar">
+                <select name="event" required>
+                    {% for event in all_events() %}
+                        <option>{{event.event_name}}</option>
+                    {% endfor %}
+                </select><br>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div>
+		<h1 style="text-align: center;">Leave a Review</h1>
+
+        {% if not session["loggedin"] %}
+            <p style="text-align: center;">You must log in to leave a review.</p>
+        {% else %}
+		<form action="/review" class="login" style="width: 50%;" method="POST">
+			<label>Event <span style="color: #cc2c3e; font-size:25px;">*</span></label>
+			<select name="event" required>
+				{% for event in all_events() %}
+					<option>{{event.event_name}}</option>
+				{% endfor %}
+			</select>
+			
+			<label>Score <span style="color: #cc2c3e; font-size:25px;">*</span></label><br>
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 0 auto; width: 85%">
+                <input id="score" name="score" type="range" min="1" max="5" step="0.5" oninput="updateScoreVal(this.value)"/>
+                <label id="scoreVal" style="width: 5%; font-size: 25px; font-weight: bold;">3</label>
+            </div>
+			
+			<label>Your Review</label>
+			<textarea name="text" placeholder="What did you think?" maxlength="250"></textarea>
+			
+			<button type="submit">Submit Review</button>
+		</form>
+        {% endif %}
+	</div>
+
+    <script>
+        function updateScoreVal(val) {
+            document.getElementById("scoreVal").innerHTML = val;
+        }
+    </script>
+{% endblock %}

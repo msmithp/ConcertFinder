@@ -4,7 +4,7 @@
 		<h1 style="text-align: center;">Create Account</h1>
 		<form action="/create_account" class="login" style="width: 50%;" method="POST">
 			<label>Username <span style="color: #cc2c3e; font-size:25px;">*</span></label>
-			<input type=text name=username placeholder="Enter username..." required
+			<input type=text name=username placeholder="Enter username..." maxlength="30" required
 				{% if user %}
 					value={{user["username"]}}
 				{% endif %}
@@ -25,7 +25,7 @@
 			</select>
 			
 			<label>Bio</label>
-			<textarea name=bio placeholder="Tell us a little about yourself...">{% if user %}{{user["bio"]}}{% endif %}</textarea>
+			<textarea name=bio placeholder="Tell us a little about yourself..." maxlength="150">{% if user %}{{user["bio"]}}{% endif %}</textarea>
 			
 			<button type="submit">Create Account</button>
 		</form>

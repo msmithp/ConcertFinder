@@ -5,11 +5,7 @@
 		<form action="/login" method="POST">
 			<div class="login">
 				<label>Username:</label>
-				<input type=text name=username id="loginUsername" placeholder="Enter username..."
-					{% if user %}
-						value={{user["username"]}}
-					{% endif %}
-				>
+				<input type=text name=username id="loginUsername" placeholder="Enter username...">
 				<button type="submit">Login</button>
 			</div>
 		</form>

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}	 
+	 <div>
+		<h1>Reviews: "{{event_name}}"</h1>
+		{% if not reviews %}
+			<p>There aren't any reviews for this event. Why don't you leave one?</p>
+		{% else %}
+			<div class="styledlist">
+                {% for review in reviews %}
+                    <div class="styledlistitem">
+                        <h1>{{review.username}}</h1>
+                        <p>{{format_date(review.review_date)}}</p>
+                        <p>Score: {{review.score}}</p>
+                        {% if review.review_text %}
+                            <p>{{review.review_text}}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
