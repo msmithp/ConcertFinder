@@ -20,7 +20,7 @@
 			<label>City <span style="color: #cc2c3e; font-size:25px;">*</span></label>
 			<select name="city" required>
 				{% for city in cities() %}
-					<option>{{city.city_name}}, {{city.country}}</option>
+					<option>{{city.city_name}}</option>
 				{% endfor %}
 			</select>
 			
