@@ -100,38 +100,13 @@ def search_events():
 @app.route('/event_search', methods=['POST'])
 def do_event_search():
     query = request.form["query"]
-    events = get_events(query)
+    events = get_events(query, session["username"] if session["loggedin"] else None)
     return render_template('list_events.html', query=query, events=events)
 
 
 @app.route('/account')
 def account():
     return render_template("account.html")
-
-# @app.route('/about')
-# def about():
-#     return render_template("about.html")
-
-# @app.route('/display')
-# def display():
-#     customers = get_customers()
-#     return render_template('display.html', customers = customers)
-
-# #Single song
-# @app.route('/songs/<int:id>/')
-# def customer(id):
-#     customer = get_one_customer(id)
-#     return render_template('song.html', customer=customer)
-
-# @app.route('/insert_form')
-# def insert_form():
-#     return render_template('insert.html')
-
-
-# @app.route('/add', methods=['POST'])
-# def add():
-#     create(request.form['customer_name'], request.form['customer_street'], request.form['customer_city'])
-#     return redirect(url_for('display'))
 
 
 if __name__ == '__main__':
