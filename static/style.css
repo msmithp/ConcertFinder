@@ -279,6 +279,7 @@ tr {
 	width: 32.333%;
 	text-align: left;
 	box-sizing: border-box;
+	word-wrap: break-word;
 }
 
 .cell:hover {
@@ -428,6 +429,7 @@ li a:hover:not(.active) {
 	transition: 0.2s;
 	display: block;
 	text-align: left;
+	word-wrap: break-word;
 }
  
 .styledlistitem:hover {
