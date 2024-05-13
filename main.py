@@ -1,6 +1,6 @@
 # main.py controller
 from flask import Flask, redirect, request, url_for, render_template, session, jsonify
-from db import get_user, get_events, get_artists, get_upcoming_events, get_tickets, insert_user, get_cities, insert_review, get_reviews, get_all_events
+from db import get_user, get_events, get_upcoming_events, get_tickets, insert_user, get_cities, insert_review, get_reviews, get_all_events
 from datetime import datetime
 
 app = Flask(__name__)

@@ -57,10 +57,6 @@ def get_events(search_query, username):
         return result
 
 
-def get_artists(query):
-    pass
-
-
 def get_cities():
     conn = open_connection()
     with conn.cursor() as cursor:
